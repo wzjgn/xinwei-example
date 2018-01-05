@@ -1,0 +1,13 @@
+xinwei-wrapper-example/target/
+xinwei-wrapper-plugin-example/target/
+.classpath
+.idea
+.project
+.settings
+/bin
+*/bin
+*.iml
+*/*.iml
+*/.settings
+*/.classpath
+*/.project

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>xinwei-example</artifactId>
+        <groupId>com.xinwei</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>xinwei-wrapper-example</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+        <!-- copy xinwei-wrapper-plugin-example 到当前工程 -->
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.xinwei</groupId>
+                                    <artifactId>xinwei-wrapper-plugin-example</artifactId>
+                                    <classifier>distribution</classifier>
+                                    <version>1.0</version>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- wrapper plugin  替换wrapper.conf 配置中的启动类相关信息-->
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includes>
+                        <include>${project.build.directory}/xinwei-wrapper-plugin-example-1.0/wrapper/bin/service.sh</include>
+                        <include>${project.build.directory}/xinwei-wrapper-plugin-example-1.0/wrapper/conf/wrapper.conf
+                        </include>
+                    </includes>
+                    <replacements>
+                        <replacement>
+                            <token>%app.name%</token>
+                            <value>ExampleStartApplication</value>
+                        </replacement>
+                        <replacement>
+                            <token>%app.long.name%</token>
+                            <value>ExampleStartApplication</value>
+                        </replacement>
+                        <replacement>
+                            <token>%app.description%</token>
+                            <value>ExampleStartApplication</value>
+                        </replacement>
+                        <replacement>
+                            <token>%YourMainClass%</token>
+                            <value>com.xinwei.example.ExampleStartApplication</value>
+                        </replacement>
+                    </replacements>
+                </configuration>
+            </plugin>
+            
+            <!-- 生成bin包 -->
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>target/xinwei-wrapper-plugin-example-1.0/wrapper/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin> 
+        </plugins>
+    </build>
+
+</project>

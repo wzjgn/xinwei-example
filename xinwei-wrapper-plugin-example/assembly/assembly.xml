@@ -1,0 +1,17 @@
+<assembly>
+    <id>distribution</id>
+    <formats>
+        <format>jar</format>
+    </formats>
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+        </dependencySet>
+    </dependencySets>
+    <fileSets>
+        <fileSet>
+            <directory>${project.basedir}/wrapper</directory>
+            <outputDirectory>/wrapper</outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>
