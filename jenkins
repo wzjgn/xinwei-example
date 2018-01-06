@@ -1,0 +1,20 @@
+#export JAVA_HOME=/usr/local/jdk1.8.0_45
+PROJECT="xinwei-wrapper-example"
+BAK_DIR=/usr/local/workspace_bak/$PROJECT/`date +%Y%m%d`
+mkdir -p "${BAK_DIR}"
+PROJECT_DIR="/usr/local/workspace"
+
+
+#tar 解压文件时，又目录问题，所以要先进入目录在tar操作。
+cd "${PROJECT_DIR}"
+tar -xvf "${PROJECT}"-1.0-RELEASE-bin.tar
+
+#先关闭wrapper，之后重启新的wrapper
+source /etc/profile
+dataCollection/bin/service.sh stop
+sleep 5
+rm -rf "${PROJECT}"
+mv  "${PROJECT}"-1.0-RELEASE  "${PROJECT}"
+dataCollection/bin/service.sh start
+
+mv  "${PROJECT}"-1.0-RELEASE-bin.tar "${BAK_DIR}"/"${PROJECT}"-1.0-RELEASE-bin_`date +%Y%m%d%H%M%S`.tar
