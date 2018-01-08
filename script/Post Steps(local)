@@ -1,0 +1,47 @@
+#!/bin/bash
+
+export BUILD_ID=dontkillme #必须加
+
+TOMCATTHREAD=`ps aux | grep 'Example' | grep -v grep`
+
+if test -z "$TOMCATTHREAD"
+
+then
+
+echo "TOMCAT NOT START"
+
+else
+
+THREADLIST=(${TOMCATTHREAD// / })
+
+PID=${THREADLIST[1]}
+
+echo $PID
+
+kill -9 $PID
+
+sleep 3s
+
+fi
+
+#Post Steps 执行完脚本后，会将在此处启动的进程全部kill，为了确保应用继续后台运行，需要做以上处理。
+
+#具体介绍详见本文第六部分。
+
+sleep 5
+
+cd /var/lib/jenkins/workspace/wrapper-test/xinwei-wrapper-example/target
+
+tar xvf xinwei-wrapper-example-1.0-SNAPSHOT-bin.tar
+
+cd xinwei-wrapper-example-1.0-SNAPSHOT/bin/
+
+source /etc/profile
+
+./service.sh stop
+
+sleep 5
+
+./service.sh start
+
+ps -ef|grep ExampleStartApplication

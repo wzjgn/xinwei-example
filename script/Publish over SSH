@@ -1,0 +1,14 @@
+#Source files:
+xinwei-wrapper-example/target/xinwei-wrapper-example-1.0-SNAPSHOT-bin.tar
+
+#Remove prefix:
+xinwei-wrapper-example/target/
+
+#Exec command:
+cd /usr/local/workspace
+tar xvf xinwei-wrapper-example-1.0-SNAPSHOT-bin.tar
+cd xinwei-wrapper-example-1.0-SNAPSHOT/bin/
+source /etc/profile
+./service.sh stop
+sleep 5
+./service.sh start

@@ -1,0 +1,1 @@
+scp /var/lib/jenkins/jobs/wrapper-test/modules/com.xinwei\$xinwei-wrapper-example/builds/${BUILD_NUMBER}/archive/com.xinwei/xinwei-wrapper-example/1.0-SNAPSHOT/xinwei-wrapper-example-1.0-SNAPSHOT-bin.tar root@123.56.180.65:/usr/local/workspace/xinwei-wrapper-example-1.0-${BUILD_NUMBER}-bin.tar
