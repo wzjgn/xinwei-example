@@ -1,5 +1,7 @@
 #Source files:
 xinwei-wrapper-example/target/xinwei-wrapper-example-1.0-SNAPSHOT-bin.tar
+或
+**/*.tar
 
 #Remove prefix:
 xinwei-wrapper-example/target/

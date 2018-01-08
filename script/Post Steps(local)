@@ -38,10 +38,6 @@ cd xinwei-wrapper-example-1.0-SNAPSHOT/bin/
 
 source /etc/profile
 
-./service.sh stop
-
-sleep 5
-
 ./service.sh start
 
 ps -ef|grep ExampleStartApplication
