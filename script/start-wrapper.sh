@@ -1,5 +1,4 @@
-#!/bin/sh
-TARGET="xinwei_wrapper_test"
+TARGET="xinwei-wrapper-example-"$2
 VERSION="$1"
 ZIPNAME="$TARGET-$VERSION-bin.tar"
 
@@ -32,7 +31,7 @@ if [ ! -f $ZIPNAME ]; then
 echo $ZIPNAME"不存在"
 else
 echo "解压"$ZIPNAME
-tar -xf $ZIPNAME -C $TARGET
+tar -xf $ZIPNAME
 ls | grep bin.tar | grep -v $ZIPNAME | xargs rm
 fi
 
