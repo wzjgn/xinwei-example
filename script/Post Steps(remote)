@@ -1,5 +1,5 @@
 #拷贝tar包到远程服务器
-scp /var/lib/jenkins/jobs/wrapper-test/modules/com.xinwei\$xinwei-wrapper-example/builds/${BUILD_NUMBER}/archive/com.xinwei/xinwei-wrapper-example/1.0-SNAPSHOT/xinwei-wrapper-example-1.0-SNAPSHOT-bin.tar root@123.56.180.65:/usr/local/workspace/xinwei-wrapper-example-1.0-SNAPSHOT-${BUILD_NUMBER}-bin.tar
+scp /var/lib/jenkins/jobs/${JOB_NAME}/modules/com.xinwei\$xinwei-wrapper-example/builds/${BUILD_NUMBER}/archive/com.xinwei/xinwei-wrapper-example/1.0-SNAPSHOT/xinwei-wrapper-example-1.0-SNAPSHOT-bin.tar root@123.56.180.65:/usr/local/workspace/xinwei-wrapper-example-1.0-SNAPSHOT-${BUILD_NUMBER}-bin.tar
 
 #执行远程服务器脚本文件
 ssh root@123.56.180.65 /usr/local/start-wrapper.sh ${BUILD_NUMBER} 1.0-SNAPSHOT
