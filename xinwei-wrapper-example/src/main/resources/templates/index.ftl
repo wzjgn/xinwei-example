@@ -6,7 +6,7 @@
 
 	</head>
 	<body>
-       <div style=" text-align:center;">测试页面,系统启动成功 dev!</div>
+       <div style=" text-align:center;">测试页面,系统启动成功, dev!</div>
 	</body>
 </html>
 
